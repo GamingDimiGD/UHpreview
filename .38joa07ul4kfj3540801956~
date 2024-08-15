@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/howtoplay.css" />
+    <link rel="shortcut icon" type="x-icon" href="../images/logo.jpeg" />
+    <title>怎麼玩?</title>
+</head>
+
+<body>
+    <nav class="navbar">
+        <h1>HANGMAN</h1>
+        <div class="info">
+            <a href="../">回首頁</a>
+            <a href="index.html">回到遊戲介面</a>
+        </div>
+    </nav>
+    <div class="htp">
+        <svg class="bubble" id="visual" viewBox="0 0 900 600" width="900" height="600"
+            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+            <g transform="translate(414.41350194497716 303.2088901443424)">
+                <path id="blob2"
+                    d="M137.2 -124.9C184.9 -89.6 235.5 -44.8 248.4 13C261.4 70.7 236.8 141.4 189.1 166.4C141.4 191.4 70.7 170.7 10.7 160C-49.3 149.3 -98.5 148.5 -132.2 123.5C-165.9 98.5 -183.9 49.3 -180.2 3.8C-176.4 -41.7 -150.8 -83.4 -117.1 -118.8C-83.4 -154.1 -41.7 -183.1 1.5 -184.6C44.8 -186.1 89.6 -160.2 137.2 -124.9"
+                    fill="#004c00"></path>
+            </g>
+        </svg>
+        <h1 id="no1">Hangman 遊戲</h1>
+        <div class="keyboard">
+            <p id="p1">
+                遊玩方式很簡單，一開始遊戲會隨機抽一個詞語，你就點擊螢幕上的字母，長得像
+                <button>A</button>
+                <button>B</button>
+                <button>C</button>
+                <button>D</button>
+            </p>
+        </div>
+
+        <p id="p2">來猜那個詞有哪些字母，如果你的詞沒有那個字母，遊戲就會在下面這張圖上畫一個火柴人，錯一個字母就畫一個筆畫</p>
+        <div class="pics">
+            <img src="../images/hangman-0.png" alt="hangman-0">
+            <li>=></li> <img src="../images/hangman-1.png" alt="hangman-1">
+        </div>
+        <p id="p3">如果畫出一個完整的火柴人</p>
+        <div class="pics">
+            <img src="../images/hangman-0.png" alt="hangman-6">
+        </div>
+        <p>你就輸了!</p>
+        <p>如果你在畫出完整的火柴人之前把字母猜完，你就贏了!</p>
+        <p>在玩完一局Hangman時，畫面上會寫答案和意思，可以學英文。可以達到教育意義。</p>
+        <h1>
+           貨幣與按鈕功能
+        </h1>
+        
+        <p>
+            ✧是閃，是一個可以在商店買東西的貨幣，贏一局可拿到至少10✧
+        </p>
+
+        <p>
+            🔥是連續登入遊戲的次數，意思是你連續幾天玩這個遊戲，如果你連登更多，就可以拿到更多✧
+        </p>
+
+        <p>
+            關閉閃爍、音樂、減少效果、儲存、成就和商店都在畫面頂端的三條線
+        </p>
+        
+        <div class="keyboard">
+            <button id="play"><a href="index.html">開始遊玩!</a></button>
+        </div>
+    </div>
+</body>
+
+</html>

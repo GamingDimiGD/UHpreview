@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+body {
+    background: #003c00;
+    position: fixed;
+    transition: opacity 1s ease;
+}
+
+.load {
+    background: #fff;
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease;
+    top: 0;
+    left: 0;
+}
+
+.load h1 {
+    font-size: 50px;
+    color: #000;
+    margin: 20px;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.load img {
+    transition: opacity 1s ease;
+    opacity: 0;
+}
+
+.version {
+    color: #fff;
+}
+
+.bubble {
+    z-index: -1;
+    top: 0;
+    right: 0;
+}
+
+h1 {
+    font-weight: 800;
+    color: #0f0;
+}
+
+.alert {
+    color: red;
+}
+
+h1.alert {
+    top: 10px;
+}
+
+.title {
+    margin-top: -2%;
+    margin-bottom: 10%;
+    animation: a2 3s ease infinite;
+}
+
+@keyframes a2 {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.text {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#play {
+    width: fit-content;
+    padding: 3px 14px;
+}
+
+p {
+    color: #fff;
+}
+
+.pics {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+img {
+    width: 70px;
+}
+li {
+    list-style: none;
+    color: #fff;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    justify-content: center;
+    min-height: 100vh;
+    background: #003c00;
+}
+
+.navbar {
+    position: absolute;
+    top: 0;
+    background: #00ff00;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 10%;
+    padding: 1rem;
+    color: #003c00;
+    max-height: 50px;
+}
+
+.navbar li {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #ff0000;
+}
+
+.info {
+    position: absolute;
+    right: 10px;
+    gap: 10px;
+    display: flex;
+}
+
+.container {
+    width: 850px;
+    background-color: #fff;
+    display: flex;
+    gap: 70px;
+    align-items: flex-end;
+    padding: 60px 40px;
+    border-radius: 10px;
+
+}
+.game-box .keyboard {
+    display: flex;
+    gap: 5px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+:where(body) button:hover {
+    background: #00ff00;
+}
+
+button {    
+    width: fit-content;
+    padding: 3px 14px;
+    margin: 5px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: #003c00;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+:where(.game-modal, .keyboard) button {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: #003c00;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.coolanim::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    background: red;
+    border-radius: 4px;
+    z-index: -1;
+    margin-top: 8px;
+    margin-left: 13.5px;
+    transition: 0.3s;
+    animation: animate 2s linear infinite;
+}
+
+.coolanim:hover::before {
+    width: 148px;
+    height: 45px;
+}
+
+@keyframes animate {
+    50% {
+        filter: hue-rotate(350deg);
+    }
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 5px;
+    top: 5px;
+    background: #000c003c;
+    height: calc(100% - 10px);
+    width: 30%;
+    min-width: 300px;
+    border-radius: 5px;
+}
+
+@keyframes white {
+    10% {
+        background: #fff;
+    }
+    90% {
+        background: #fff;
+    }
+}

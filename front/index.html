@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="google-site-verification" content="lmqOyZl2ZCg2ATRUYIP1qIZ1adBDBNPqyu3do0aHNjo" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/homepage.css" />
+        <!-- cdn  -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/1.0.0/particles.min.js" integrity="sha512-zSXd15DNZUoXEVLbyfTa1XQFk33vi7CcJzPHdBh/7Y3NEEec+l/eBhg2RGgRutwQVfrt9EnBmrYzn6d3NxGG1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="gamingdimigd" data-description="Support me on Buy me a coffee!" data-message="如果你能贊助的話，我就能買我自己的網域了!" data-color="#FF813F" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+
+        <script src="scripts/global.js" defer></script>
+        <script src="scripts/rng.js" defer></script>
+        <script src="scripts/glitch.js" defer></script>
+        <script src="scripts/vocab.js" defer></script>
+        <script src="scripts/web.js" defer></script>
+
+        <link rel="shortcut icon" type="x-icon" href="images/logo.jpeg" />
+        <title>首頁 - Unhinged Hangman</title>
+        <!-- 一個很好玩的遊戲，要試試看嗎? 這遊戲是傳統Hangman，然後加了很多東西，還有很多秘密! -->
+    </head>
+
+    <body>
+        <div class="load">
+            <img src="images/GD logo.png" alt="遊戲迪米" />
+            <h1>遊戲迪米</h1>
+        </div>
+        <div class="text">
+
+            <div class="main">
+                <h1 class="title">UNHINGED<br />HANGMAN</h1>
+
+                <b class="version">版本</b>
+
+                <div class="coolanim">
+                    <button>
+                        <a href="html/howtoplay.html"><h2>怎麼遊玩？</h2></a>
+                    </button>
+                </div>
+                <div class="coolanim">
+                    <button>
+                        <a href="html/credits.html"><h2>聲音的來源</h2></a>
+                    </button>
+                </div>
+                <div class="coolanim">
+                    <button id="new-block" onclick='newBlock()'>
+                        <h2>新增方塊！</h2>
+                    </button>
+                </div>
+                <div class="coolanim">
+                    <button id="new-block" onclick='removeAllBlocks()'>
+                        <h2>清除全方塊</h2>
+                    </button>
+                </div>
+                <div class="coolanim">
+                    <button
+                        id="play"
+                        onclick="
+new Audio('sfx/START.mp3').play();
+document.body.style.opacity = 0;
+document.body.style.animation = 'white 8s ease';
+setTimeout(() => {
+    location.href = 'html/index.html';
+}, 2000)
+"
+                    >
+                        <h2>遊戲開始！</h2>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

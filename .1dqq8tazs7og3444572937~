@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+    
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../css/style.css" />
+        <link rel="shortcut icon" type="x-icon" href="../images/logo.jpeg" />
+        
+        <!-- cdn lib -->
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jStorage/0.4.12/jstorage.js" integrity="sha512-/xG2u1+39ezvrTHLgDuWJ07cIOJdBgYxOQ8s/2DkeRWInLMfe4aLBe/5Zd8ECpY/uBKsdY+i1xOEGG4a6RnXHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+        <script src="https://kit.fontawesome.com/fbd704794c.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs+/u5c3+1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.20.0/matter.min.js" integrity="sha512-6+7rTBmR6pRFe9fa0vCFjFaHZj/XYa7774bEBzRtxgdpIJOS++R3cKd6Prg/eJmxtsJotd8KAg4g57uuVQsZKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
+        <!-- files -->
+        <script src="../scripts/global.js" defer></script>
+        <script src="../scripts/loading.js" defer></script>
+        <script src="../scripts/update.js" defer></script>
+        <script src="../scripts/sparkles.js" defer></script>
+        <script src="../scripts/rng.js" defer></script>
+        <script src="../scripts/achievements.js" defer></script>
+        <script src="../scripts/muteMusic.js" defer></script>
+        <script src="../scripts/sfx.js" defer></script>
+        <script src="../scripts/glitch.js" defer></script>
+        <script src="../scripts/vocab.js" defer></script>
+        <script src="../scripts/bossDialogue.js" defer></script>
+        <script src="../scripts/boss.js" defer></script>
+        <script src="../scripts/inputHandler.js" defer></script>
+        <script src="../scripts/confetti.js" defer></script>
+        <script src="../scripts/dialogue.js" defer></script>
+        <script src="../scripts/undo.js" defer></script>
+        <script src="../scripts/qwerty.js" defer></script>
+        <script src="../scripts/finale.js" defer></script>
+        <script src="../scripts/script.js" defer></script>
+        <script src="../scripts/daily.js" defer></script>
+        <script src="../scripts/modal.js" defer></script>
+        <script src="../scripts/dynamicbg.js" defer></script>
+        <script src="../scripts/shop.js" defer></script>
+        <script src="../scripts/knowledge.js" defer></script>
+        <script src="../scripts/streak.js" defer></script>
+        <script src="../scripts/funMode.js" defer></script>
+        <script src="../scripts/autosave.js" defer></script>
+        <script src="../scripts/bossFight.js" defer></script>
+        <script src="../scripts/tutorial.js" defer></script>
+        <script src="../scripts/manageSave.js" defer></script>
+        <title>Hangman 遊戲</title>
+    </head>
+    
+    <body>
+        <div class="load">
+            <img src="../images/GD logo.png" alt="遊戲迪米" />
+            <h1>載入中</h1>
+        </div>
+        
+        <h1 class="health-bar bhb">
+           柴柴（方形） <b>100/100</b>
+        </h1>
+        <div class="boss-dialogue">
+            <img src="../images/sticks.png" class="sticks"/>
+            <li id="boss-says">哈囉駭客</li>
+        </div>
+        <nav class="navbar">
+            <h1 class="title">HANGMAN</h1>
+            <div class="info">
+                <a href="howtoplay.html" class="navbut">怎麼玩?</a>
+                <button id="mute" class="navbut" onclick="muteMusic()">關音樂</button>
+                <button id="tfl" class="navbut" onclick="toggleflash()">關閉閃爍</button>
+                <button id="antilag" class="navbut" onclick="tal()">減少效果</button>
+                <button id="save" class="navbut" onclick="save()">儲存</button>
+                <li class="ls"><b id="loginStreak">挖母災</b>🔥</li>
+                <li class="sparkles-display"><b id="sparkles">我不知道</b>✧</li>
+                <li>詞彙量: <b id="va">我不知道</b> / <b id="via">我不知道</b></li>
+                <button class="toggle" onclick="
+                    document.querySelector('.dropdown').classList.toggle('open')
+                    isOpen = document.querySelector('.dropdown').classList[1] == 'open'
+                    document.querySelector('.toggle i').classList = isOpen? 'fa-solid fa-xmark' : 'fa-solid fa-bars'
+                    ">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+            <audio autoplay loop src="../sfx/Wallpaper.mp3">
+        </nav>
+        <div class="dropdown">
+            <button id="ach" class="dropbut" onclick="document.querySelector('.achievements-modal').classList.add('show')"> 
+            <i class="fa-solid fa-certificate"></i>
+            成就
+            </button>
+            <button id="shop" class="dropbut" onclick="document.querySelector('.market').classList.add('show')">✧商城✧</button>
+            <button id="tfl2" class="dropbut" onclick="toggleflash()">關閉閃爍</button>
+            <button id="antilag2" class="dropbut" onclick="tal()">減少效果</button>
+            <button id="save2" class="dropbut" onclick="save()">儲存</button>
+            <button id="mute2" class="dropbut" onclick="muteMusic()">關音樂</button>
+            <button id="muteA"class="dropbut" onclick="muted = !muted
+                document.getElementById('muteA').innerText = muted? '開音效' : '關音效'">關音效</button>
+            <button id="update" class="dropbut" onclick="document.querySelector('.update-modal').classList.add('show')">更新資訊!</button>
+            <button id="stats" class="dropbut" onclick="document.querySelector('.stats').classList.add('show')">統計</button>
+            <button id="howtoplay" class="dropbut" onclick="tutorial()">教學</button>
+            <button id="manage-save-button" class="dropbut" onclick="document.querySelector('.manage-save').classList.add('show')">遊戲存檔設定</button>
+            <button id="donate" class="dropbut" onclick="document.querySelector('.donate').classList.add('show')">💵斗內我!</button>
+            <a href="howtoplay.html" class="dropbut">怎麼玩?</a>
+        </div>
+        
+        <div class="game-modal modal">
+            <div class="content">
+                <img src="../images/lose.png" alt=":'(">
+                <h4>你輸了!</h4>
+                <p id="ans">答案是: <b>這東西壞掉了</b> </p>
+                <p id="meaning">意思是: <b>這東西壞掉了</b></p>
+                <button class="play-again">再玩一遍!</button>
+            </div>
+        </div>
+        <div class="container">
+            <h1 id="help">太擠了!</h1>
+            <div class="hangman-box">
+                <h6 class="version">版本沒載入好</h6>
+                <img src="../images/hangman-0.png" alt="hangman" />
+                <h6 class="autosave-text">
+                   自動儲存已開啟
+                </h6>
+                <h1 id="hangman">Hangman 遊戲</h1>
+            </div>
+            <div class="game-box">
+                <ul class="word-display">
+                </ul>
+                <h4 class="hint-text">
+                    提示:
+                    <b>訂閱遊戲迪米</b>
+                </h4>
+                <h4 class="guesses-text">
+                    錯誤次數:
+                    <b>0 / 6</b>
+                </h4>
+                <div class="keyboard">
+                </div>
+                <button class="qwerty">使用 qwerty 鍵盤</button>
+                
+                <button class="undo" onclick="undo()" disabled><i class="fa-solid fa-rotate-left"></i></button>
+                <button class="qwerty buy-undo" onclick="buyUndo()">購買 500✧</button>
+                <b class='amount-display'>載入中</b>
+                <br/>
+                
+                <b class="streak">
+                    0 連勝
+                </b>
+                <b class="hi-streak">
+                    最高連勝紀錄: 0
+                </b>
+                <b class="boss-fight-badge"></b>
+            </div>
+        </div>
+        <p class="health-bar phb">
+           血量 <b>10/10</b>
+        </p>
+    
+        <button id="achievements" onclick="document.querySelector('.achievements-modal').classList.toggle('show')">
+            <i class="fa-solid fa-certificate"></i>
+            成就
+        </button>
+    
+        <div class="achievements-modal modal">
+            <div class="content">
+                <h1>成就 <b id="yaa">你的數目</b>/<b id="aa">成就數目</b></h1>
+                <div class="alist">
+                   
+                </div>
+                
+            </div>
+            <button onclick="document.querySelector('.achievements-modal').classList.remove('show')">關閉</button>
+        </div>
+        <div class="market modal">
+            <div class="content">
+                <h1>
+                    商城
+                </h1>
+                <div class="shops-list">
+                    <button onclick="document.querySelector('.shop-modal').classList.add('show')
+                        document.querySelector('.market').classList.remove('show')" class="shop-button">不會閃的快閃閃店</button>
+                    <button onclick="document.querySelector('.knowledge-modal').classList.add('show')
+                        document.querySelector('.market').classList.remove('show')" class="knowledge-button">冷凍知識庫</button>
+                </div>
+            </div>
+            <button onclick="document.querySelector('.market').classList.remove('show')">關閉</button>
+        </div>
+        
+        <div class="shop-modal modal">
+            <div class="content shop">
+                <h1>不會閃的快閃閃店</h1>
+                <div class="stuff"></div>
+            </div>
+            <button onclick="document.querySelector('.shop-modal').classList.remove('show')">關閉</button>
+        </div>
+
+        <div class="knowledge-modal modal">
+            <div class="content shop">
+                <h1>冷凍知識庫</h1>
+                <div class="stuff"></div>
+            </div>
+            <button onclick="document.querySelector('.knowledge-modal').classList.remove('show')">關閉</button>
+        </div>
+        
+        <div class="daily-login modal">
+            <div class="content">
+                <h1>每日登入</h1>
+                <div class="perks"></div>
+            </div>
+            <button onclick="
+    document.querySelector('.daily-login').classList.remove('show')
+                ">
+                關閉
+            </button>
+        </div>
+        
+        <div class="notification">
+           <p>
+               你駭客嗎
+           <p>
+        </div>
+    </body>
+
+    <div class="update-modal modal">
+        <div class="content">
+            <h1 class="title">遊戲已更新到版本 <b class="version"></b> </h1>
+            <div class="description">
+            </div>
+        </div>
+        <button onclick="document.querySelector('.update-modal').classList.remove('show')">關閉</button>
+    </div>
+    <div class="stats modal">
+        <div class="content">
+            <h1>
+                遊戲統計
+            </h1>
+            <div class="data">
+            </div>
+            <button  onclick="
+                asd = vocabAmount
+                if(isNaN(asd)) asd = 0
+                if($.jStorage.get('bossFightBadge')) vocabAmount + oVocab.length
+                data = {
+                    dayStarted: new Date().toString(),
+                    wins: asd,
+                    loses: 0,
+                    timesPlayed: asd,
+                    winRate: 0,
+                    loseRate: 0,
+                    totalSparkles: $.jStorage.get('sparkles'),
+                    sparklesSpent: 0,
+                    totalGuesses: 0,
+                    catSparkles: 0,
+                    bestLoginStreak: $.jStorage.get('loginStreak'),
+                }
+                ">重新計算</button>
+        </div>
+        <button onclick="document.querySelector('.stats').classList.remove('show')">關閉</button>
+    </div>
+    <div class="dialogue modal">
+        <div class="content">
+            <img src="../images/characters/bob.png" alt="bob">
+            <div class="text-box">
+                <h1 class="name">Bob</h1>
+                <div class="dialogue-text">
+                    bob is calling...
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="manage-save modal">
+        <div class="content">
+            <h1>遊戲存檔設定</h1>
+            <div class="idk-what-to-call-this">
+                <button class="download-save" onclick="exportSave()">下載目前遊戲檔案</button>
+                <button class="upload-save" onclick="document.querySelector('.save-upload').click()">
+                    <input class="save-upload" type="file" accept=".uhs" style="display: none;">
+                    上傳遊戲檔案 <b class="red">會覆蓋目前遊戲檔案</b>
+                </button>
+            </div>
+        </div>
+        <button onclick="document.querySelector('.manage-save').classList.remove('show')">關閉</button>
+    </div>
+    <div class="donate modal small-modals">
+        <div class="content">
+            <h1>斗內我!</h1>
+            我需要你們的贊助才能買得起網域!
+            <a href="https://www.buymeacoffee.com/gamingdimigd"><img src="https://img.buymeacoffee.com/button-api/?text=斗內我!&emoji=💵&slug=gamingdimigd&button_colour=003c00&font_colour=ffffff&font_family=Cookie&outline_colour=ffffff&coffee_colour=FFDD00" /></a>
+            或掃描QR碼
+            <img src="../images/bmc_qr.png" alt="https://www.buymeacoffee.com/gamingdimigd" class="donate-img">
+            <b>
+                Powered by <img src="../images/bmc-full-logo.svg" alt="Buy me a coffee" class="bmc-svg">
+            </b>
+        </div>
+        <button onclick="document.querySelector('.donate').classList.remove('show')">關閉</button>
+    </div>
+    
+    <!--   boo   -->
+
+</html>
